@@ -1,7 +1,7 @@
 {
-  "name": "react-starter-kit",
+  "name": "firebase-test",
   "version": "0.1.0",
-  "description": "react-starter-kit",
+  "description": "firebase-test",
   "main": "index.js",
   "directories": {},
   "scripts": {
@@ -42,10 +42,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ZxBing0066/react-starter-kit.git"
+    "url": "git+https://github.com/ZxBing0066/firebase-test.git"
   },
   "bugs": {
-    "url": "https://github.com/ZxBing0066/react-starter-kit/issues"
+    "url": "https://github.com/ZxBing0066/firebase-test/issues"
   },
-  "homepage": "https://github.com/ZxBing0066/react-starter-kit#readme"
+  "homepage": "https://github.com/ZxBing0066/firebase-test#readme"
 }
