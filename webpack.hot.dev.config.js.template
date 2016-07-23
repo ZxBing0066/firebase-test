@@ -1,0 +1,32 @@
+var webpack = require('webpack');
+var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
+var webpackConfig = require('./webpack.dev.config.js');
+
+webpackConfig.plugins = [
+    commonsPlugin,
+    new webpack.DefinePlugin({
+        'process.env': {
+            'NODE_ENV': JSON.stringify('dev'),
+        },
+    })
+];
+webpackConfig.devServer = {
+    historyApiFallback: {
+        index: './index.html',
+    },
+    host: process.env.HOST || '0.0.0.0',
+    port: process.env.PORT || 8080
+};
+webpackConfig.module.loaders = [{
+    test: /\.css$/,
+    loaders: ['style-loader', 'css-loader']
+}, {
+    test: /\.(png|jpg)$/,
+    loader: 'url-loader?limit=8192'
+}, {
+    test: /\.(js|jsx)$/,
+    exclude: /(node_modules)/,
+    loaders: ['react-hot', 'babel?presets[]=react,presets[]=es2015']
+}];
+
+module.exports = webpackConfig;

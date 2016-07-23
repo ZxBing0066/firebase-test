@@ -1,0 +1,7 @@
+node_modules
+build
+config.dev.js
+mockList.js
+*.log
+*.orig
+webpack.hot.dev.config.js
