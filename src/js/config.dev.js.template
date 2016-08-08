@@ -1,0 +1,16 @@
+import config from './config.js';
+import _ from 'underscore';
+
+config.API_ENV = 'pre';
+
+var mockList = {};
+try {
+    mockList = require('mockList').default;
+} catch(e) {
+    console.warn('如果需要模拟数据请新建"mockList"文件来放置模拟API列表');
+}
+
+export default _.extend(config, {
+    debug: true,
+    mockList: mockList
+});
