@@ -93,3 +93,17 @@ table {
 .pos-r {
     position: relative;
 }
+
+.weather_add {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+.line_input_wrapper {
+    display: flex;
+}
+
+.weather_city_card {
+    margin-top: 10px;
+    padding: 30px;
+}

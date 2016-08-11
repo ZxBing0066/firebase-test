@@ -13,6 +13,9 @@ const ROUTE_LSIT = [
     }, {
         path: '/weather',
         name: '天气'
+    }, {
+        path: '/shadowsocks',
+        name: 'shadowsocks'
     },
 ];
 
@@ -74,9 +77,9 @@ export default React.createClass({
                 open={this.state.open}
                 onRequestChange={(open) => this.setState({open})}
             >
-                {ROUTE_LSIT.map((routeInfo) => {
+                {ROUTE_LSIT.map((routeInfo, i) => {
                     return (
-                        <MenuItem onTouchTap={() => this.jumpToRoute(routeInfo.path)}>
+                        <MenuItem key={i} onTouchTap={() => this.jumpToRoute(routeInfo.path)}>
                             {routeInfo.name}
                         </MenuItem>
                     );

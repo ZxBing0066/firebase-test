@@ -49,12 +49,29 @@ var baseRequest = function baseRequest(url, param) {
                 return;
             }
             var resObj = JSON.parse(res.text);
-            if(resObj.errNum != 0) {
-                error = new RequestError(resObj.errNum, resObj.errMsg);
-                reject(error);
-            } else {
-                resolve(resObj);
+            resolve(resObj);
+        })
+    });
+};
+var basePostRequest = function baseRequest(url, param) {
+    return new Promise((resolve, reject) => {
+        request.post(url).type('form').send(param).end(function(err, res) {
+            var error;
+            if(err) {
+                error = err;
+            } else if(!res) {
+                error = new RequestError(0, 'Empty Response!');
+            } else if(!res.ok) {
+                error = new RequestError(res.status, 'Network Error!');
+            } else if(!res.text) {
+                error = new RequestError(0, 'No Response!');
             }
+            if(error) {
+                reject(error);
+                return;
+            }
+            var resObj = JSON.parse(res.text);
+            resolve(resObj);
         })
     });
 };
@@ -76,6 +93,12 @@ export default {
     },
     changeNickName(nickName) {
         return database.ref(`users/${uid}/nickName`).set(nickName);
+    },
+    getUserCityList() {
+        return database.ref(`users/${uid}/cityList`);
+    },
+    addCityToUserCityList(cityInfo) {
+        return database.ref(`users/${uid}/cityList`).push(cityInfo);
     },
     getCityList(cityName) {
         return baseRequest(`${urls.WEATHER_SERVICE_BASE_URL}citylist`, {
@@ -100,6 +123,10 @@ export default {
         return baseRequest(`${urls.WEATHER_SERVICE_BASE_URL}recentweathers`, {
             cityid: cityId
         });
-    }
-
+    },
+    addShadowsocks(url) {
+        return basePostRequest('http://my.com:10086/shadowsocks/add', {
+            url: url
+        });
+    },
 }

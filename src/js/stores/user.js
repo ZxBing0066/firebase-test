@@ -58,5 +58,5 @@ export default {
     },
     getUser() {
         return auth.currentUser;
-    }
-}
+    },
+};

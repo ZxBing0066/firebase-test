@@ -12,9 +12,10 @@ import uiDispatcher from '../dispatcher/uiDispatcher.js';
 import dispatcherMixin from '../mixins/dispatcherMixin.js';
 
 export default React.createClass({
-    mixins: [dispatcherMixin],
+    mixins: [ dispatcherMixin ],
     getInitialState() {
         return {
+            show: this.props.defaultShow == null ? true : this.props.defaultShow,
             userState: user.getUserState(),
             user: user.getUser()
         };
@@ -56,8 +57,19 @@ export default React.createClass({
             action: 'toggle'
         });
     },
+    show() {
+        this.setState({
+            show: true
+        });
+    },
+    hide() {
+        this.setState({
+            show: false
+        });
+    },
     render() {
         return (
+            this.state.show ?
             <div className='header'>
                 <AppBar
                     title='Title'
@@ -84,7 +96,7 @@ export default React.createClass({
                         </div>
                     }
                 />
-            </div>
+            </div> : null
         );
     }
 });
