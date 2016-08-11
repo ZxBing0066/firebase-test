@@ -26,11 +26,8 @@ export default React.createClass({
     },
     componentDidMount() {
         if(this.props.location.state && this.props.location.state.addCityInfo) {
-            api.addCityToUserCityList(this.props.location.state.addCityInfo).then((res) => {
-                debugger
-            }).catch((e) => {
-                debugger
-            });
+            api.addCityToUserCityList(this.props.location.state.addCityInfo);
+            this.context.router.replace('/weather');
         }
         this.listenCityList();
     },
@@ -52,7 +49,6 @@ export default React.createClass({
     getRecentWeathers(cityInfo, key) {
         var weather = this.state.weather;
         api.getRecentWeathers(cityInfo.area_id).then((res) => {
-            // if(!this.isMounted()) return;
             weather[key] = res.retData;
             this.setState({
                 weather: weather
