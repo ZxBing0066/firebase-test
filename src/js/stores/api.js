@@ -101,7 +101,7 @@ export default {
         return database.ref(`users/${uid}/cityList`).push(cityInfo);
     },
     getCityList(cityName) {
-        return baseRequest(`${urls.WEATHER_SERVICE_BASE_URL}citylist`, {
+        return baseRequest(`${urls.BAIDU_APISTORE}weatherservice/citylist`, {
             cityname: cityName
         });
     },
@@ -117,10 +117,10 @@ export default {
             requestUrl = 'weather';
             request.citypinyin = request.cityPinyin;
         }
-        return baseRequest(`${urls.WEATHER_SERVICE_BASE_URL}${requestUrl}`, request);
+        return baseRequest(`${urls.BAIDU_APISTORE}weatherservice/${requestUrl}`, request);
     },
     getRecentWeathers(cityId) {
-        return baseRequest(`${urls.WEATHER_SERVICE_BASE_URL}recentweathers`, {
+        return baseRequest(`${urls.BAIDU_APISTORE}weatherservice/recentweathers`, {
             cityid: cityId
         });
     },
